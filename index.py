@@ -56,10 +56,10 @@ def handle_command(command, channel):
         text=response or default_response
     )
 
-def main():
+if __name__ == "__main__":
     print("Running...")
     if slack_client.rtm_connect(with_team_state=False):
-        print("socibot connected and running!")
+        print("Connected and running!")
         # Read bot's user ID by calling Web API method `auth.test`
         starterbot_id = slack_client.api_call("auth.test")["user_id"]
         while True:
@@ -70,4 +70,3 @@ def main():
     else:
         print("Connection failed. Exception traceback printed above.")
 
-main()
