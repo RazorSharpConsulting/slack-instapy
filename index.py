@@ -5,7 +5,7 @@ from slackclient import SlackClient
 
 
 # instantiate Slack client
-slack_client = SlackClient('xoxb-323384637792-qNlZChcPtqczXPae5SmlCBVv')
+slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
 # starterbot's user ID in Slack: value is assigned after the bot starts up
 starterbot_id = None
 
@@ -58,7 +58,7 @@ def handle_command(command, channel):
 
 def main():
     print("Running...")
-    if slack_client.rtm_connect():
+    if slack_client.rtm_connect(with_team_state=False):
         print("socibot connected and running!")
         # Read bot's user ID by calling Web API method `auth.test`
         starterbot_id = slack_client.api_call("auth.test")["user_id"]
